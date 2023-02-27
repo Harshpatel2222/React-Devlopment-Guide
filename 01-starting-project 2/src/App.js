@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList';
 import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
 import './App.css';
+import Graphql from './components/GraphQL/graphql';
+
+
 
 const App = () => {
   const [courseGoals, setCourseGoals] = useState([
@@ -42,16 +45,19 @@ const App = () => {
       </section>
       <section id="goals">
         {content}
-        {/* {courseGoals.length > 0 && (
+        {courseGoals.length > 0 && (
           <CourseGoalList
             items={courseGoals}
             onDeleteItem={deleteItemHandler}
           />
         ) // <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
-        } */}
+        }
       </section>
+      <Graphql/>
     </div>
   );
+
+ 
 };
 
 export default App;
