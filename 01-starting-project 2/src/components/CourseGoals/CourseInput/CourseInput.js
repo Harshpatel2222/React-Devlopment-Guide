@@ -40,9 +40,30 @@ import styles from './CourseInput.module.css'
 //   }
 // `;
 
+import { useMutation, gql } from '@apollo/client';
+
+const CREATE_NAME_MUTATION = gql`
+  mutation PostMutation(
+    $title: String!
+    $id: Int!
+  ) {
+    post(title: $description, id: $id) {
+      id
+      title
+    }
+  }
+`;
+
 const CourseInput = props => {
   const [enteredValue, setEnteredValue] = useState('');
   const [isValid, setIsValid] = useState(true);
+
+  const [createLink] = useMutation(CREATE_NAME_MUTATION, {
+    variables: {
+      title: enteredValue,
+      id: 11111
+    }
+  });
 
   const goalInputChangeHandler = event => {
     if(enteredValue.trim().length > 0){
@@ -68,7 +89,10 @@ const CourseInput = props => {
         <input type="text" onChange={goalInputChangeHandler} />
       </div>
       {/* </FormControl> */}
-      <Button type="submit">Add Goal</Button>
+      <Button type="submit" onSubmit={(e) => {
+        e.preventDefault();
+        createLink();
+      }}>Add Goal</Button>
     </form>
   );
 };

@@ -5,8 +5,6 @@ import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
 import './App.css';
 import Graphql from './components/GraphQL/graphql';
 
-
-
 const App = () => {
   const [courseGoals, setCourseGoals] = useState([
     { text: 'Do all exercises!', id: 'g1' },
